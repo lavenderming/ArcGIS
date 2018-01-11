@@ -3,6 +3,8 @@
 - [概述](#%E6%A6%82%E8%BF%B0)
 - [在线 map](#%E5%9C%A8%E7%BA%BF-map)
 - [离线 map](#%E7%A6%BB%E7%BA%BF-map)
+    - [服务模式（Services patterns）](#%E6%9C%8D%E5%8A%A1%E6%A8%A1%E5%BC%8F%EF%BC%88services-patterns%EF%BC%89)
+    - [桌面模式（Desktop pattern）](#%E6%A1%8C%E9%9D%A2%E6%A8%A1%E5%BC%8F%EF%BC%88desktop-pattern%EF%BC%89)
 
 # 概述
 
@@ -29,6 +31,27 @@ ArcGIS 包括 [Living Atlas of the World](http://doc.arcgis.com/en/living-atlas/
 你可以从 ArcGIS Online 或其它组织的入口 [create maps](http://server.arcgis.com/en/portal/10.4/use/get-started-with-maps.htm)、[share maps](https://doc.arcgis.com/en/arcgis-online/share-maps/share-items.htm)，以及向你的 app 中加载 map。
 
 # 离线 map
+
+为用户可以离线操作他们的地图，这里有两种模式。[Services pattern](https://developers.arcgis.com/android/latest/guide/maps.htm#ESRI_SECTION2_F7139EB000BF4003AAB390BAF0E7382D) 指 API 自己将地图离线；[Desktop pattern](https://developers.arcgis.com/android/latest/guide/maps.htm#ESRI_SECTION2_297C1CF6CA6C4243B8AB2D924B185A82) 指 你使用额外的工具，如 ArcGIS Pro 来创建移动地图包，让你可以离线使用。更多细节，见 [Offline](https://developers.arcgis.com/android/latest/guide/offline.htm)。
+
+## 服务模式（Services patterns）
+服务模式允许你创建的 app 将地图和其层离线任意长的时间，只要你已被[授予离线使用](https://doc.arcgis.com/en/arcgis-online/create-maps/take-maps-offline.htm)。如果你想使用编辑功能数据（feature data）并在网络恢复时同步更改，你还需要在功能层（feature layers）上[启用同步功能](http://server.arcgis.com/en/portal/latest/use/enable-offline-mapping.htm#guid-a2390dd3-314b-4c81-8a46-08e587748408guid-47abcd3c-af06-414a-8eda-7c38bfa90aba)。该 API 向你提供了两种主要的服务模式：
+- 事先生成离线地图，野外工作者只要简单地下载即可使用。参见：[preplanned offline workflow](https://developers.arcgis.com/android/latest/guide/offline.htm#ESRI_SECTION2_5BBF9A50658D4C44A7BB697767B3C558)。
+- 如果你的野外工作者需要自定义感兴趣的区域后生成离线地图再下载到设备，参见：[on-demand offline workflow](https://developers.arcgis.com/android/latest/guide/offline.htm#ESRI_SECTION2_C5B94265E94740B5A8FDE79A0DD6042C)。
+
+你还可以离线各个层和数据，然后在 app 中构建地图。这提供了更灵活的层结合方式，参见：[create offline layers](https://developers.arcgis.com/android/latest/guide/create-an-offline-layer.htm)。
+
+## 桌面模式（Desktop pattern）
+
+该模式允许你将地图下载到移动地图包文件（mobile map package file），然后将其分片下载到用户设备。这种方法的优势在于你可以创建一个移动地图包，然后将它分发到许多设备上。这是种“只读”选项，因为你用户做的任何编辑都不能同步到原始的数据源上。
+
+通过 ArcGIS Pro 你可以创建移动地图包，它可以将你组织的地图、资源、道路网络、定位器（locator）包含到一个文件中。更多细节，见 ArcGIS Pro 帮助的 [Mobile map package](http://pro.arcgis.com/en/pro-app/help/sharing/overview/mobile-map-package.htm)。你还可以用 ArcGIS Desktop 创建各个层的包。更多细节，见 [Create an offline layer](https://developers.arcgis.com/android/latest/guide/create-an-offline-layer.htm#ESRI_SECTION1_B8AE19595B964EFEB8180400E873D403) 的桌面模式部分。
+
+> 笔记：
+>
+> 如果你希望在离线地图（包括定位器和网络数据集）中随时使用并定期更新街道地图，请参阅 [Add StreetMap Premium data](https://developers.arcgis.com/android/latest/guide/add-streetmap-premium-data.htm)。
+
+ 
 
 
 
